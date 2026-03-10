@@ -1,1 +1,45 @@
-<p>csv-upload works!</p>
+<nz-card nzTitle="📤 Upload Pricing CSV" style="max-width:600px">
+
+    <div style="margin-bottom:12px">
+        <label style="display:block; margin-bottom:4px; font-weight:500">
+            Store ID *
+        </label>
+        <input nz-input [(ngModel)]="storeId" placeholder="e.g. STORE-001" style="width:220px" />
+    </div>
+
+    <nz-upload nzAccept=".csv" [nzBeforeUpload]="onFile" [nzShowUploadList]="false" nzType="drag" style="display:block">
+        <p style="font-size:32px; margin:8px 0">📁</p>
+        <p>Click or drag a CSV file here to upload</p>
+        <p style="color:#999; font-size:12px">
+            Required columns: store_id, sku, product_name, price, date
+        </p>
+    </nz-upload>
+
+    @let s = store.uploadStatus();
+    @if (s) {
+    <div style="margin-top:16px">
+        <div style="display:flex; justify-content:space-between;
+                    align-items:center; margin-bottom:8px">
+            <strong>{{ s.filename }}</strong>
+            <nz-tag [nzColor]="tagColor(s.status)">{{ s.status }}</nz-tag>
+        </div>
+
+        @if (s.total_rows) {
+        <nz-progress [nzPercent]="pct(s)" [nzStatus]="progressStatus(s.status)" />
+        <p style="font-size:12px; color:#666; margin-top:4px">
+            {{ s.processed_rows }} / {{ s.total_rows }} rows
+            · {{ s.error_count }} errors
+        </p>
+        }
+
+        @if (s.status === 'FAILED') {
+        <nz-alert nzType="error" [nzMessage]="errMsg(s)" nzShowIcon />
+        }
+
+        @if (s.status === 'DONE') {
+        <nz-alert nzType="success" nzMessage="Upload complete! Click Search to see the new records." nzShowIcon />
+        }
+    </div>
+    }
+
+</nz-card>

@@ -19,48 +19,8 @@ import { SearchParams } from '../../core/models/pricing.model';
     PricingTableComponent,
     CsvUploadComponent,
   ],
-  styles: [`
-    .header {
-      background: linear-gradient(135deg, #4f46e5, #7c3aed);
-      display: flex;
-      align-items: center;
-      padding: 0 24px;
-    }
-    .title {
-      color: white;
-      margin: 0;
-      font-size: 20px;
-    }
-    .content {
-      padding: 24px;
-    }
-  `],
-  template: `
-    <nz-layout style="min-height:100vh">
-      <nz-header class="header">
-        <h2 class="title">🏪 Retail Pricing Feed System</h2>
-      </nz-header>
-
-      <nz-content class="content">
-        @if (store.error()) {
-          <nz-alert
-            nzType="error"
-            [nzMessage]="store.error()!"
-            nzCloseable
-            (nzOnClose)="store.clearError()"
-            nzShowIcon
-            style="margin-bottom:16px"
-          />
-        }
-
-        <app-csv-upload />
-        <nz-divider />
-        <app-search-bar (searched)="onSearch($event)" />
-        <nz-divider />
-        <app-pricing-table />
-      </nz-content>
-    </nz-layout>
-  `,
+  styleUrl: './pricing.page.scss',
+  templateUrl: './pricing.page.html',
 })
 export class PricingPageComponent implements OnInit {
   readonly store = inject(PricingStore);

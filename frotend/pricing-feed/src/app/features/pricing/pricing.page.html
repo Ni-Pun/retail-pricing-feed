@@ -1,0 +1,25 @@
+
+<nz-layout style="min-height:100vh">
+    <nz-header class="header">
+    <h2 class="title">🏪 Retail Pricing Feed System</h2>
+    </nz-header>
+
+    <nz-content class="content">
+    @if (store.error()) {
+        <nz-alert
+        nzType="error"
+        [nzMessage]="store.error()!"
+        nzCloseable
+        (nzOnClose)="store.clearError()"
+        nzShowIcon
+        style="margin-bottom:16px"
+        />
+    }
+
+    <app-csv-upload />
+    <nz-divider />
+    <app-search-bar (searched)="onSearch($event)" />
+    <nz-divider />
+    <app-pricing-table />
+    </nz-content>
+</nz-layout>

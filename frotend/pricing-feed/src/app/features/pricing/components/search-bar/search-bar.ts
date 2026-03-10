@@ -16,71 +16,7 @@ import { SearchParams } from '../../../../core/models/pricing.model';
     NzButtonModule,
     NzInputNumberModule,
   ],
-  template: `
-    <form nz-form [formGroup]="form" (ngSubmit)="onSearch()" nzLayout="inline">
-      <nz-form-item>
-        <nz-form-label>Store ID</nz-form-label>
-        <nz-form-control>
-          <input nz-input formControlName="store_id"
-            placeholder="e.g. STORE-001" style="width:140px" />
-        </nz-form-control>
-      </nz-form-item>
-
-      <nz-form-item>
-        <nz-form-label>SKU</nz-form-label>
-        <nz-form-control>
-          <input nz-input formControlName="sku"
-            placeholder="e.g. SKU-A001" style="width:140px" />
-        </nz-form-control>
-      </nz-form-item>
-
-      <nz-form-item>
-        <nz-form-label>Product</nz-form-label>
-        <nz-form-control>
-          <input nz-input formControlName="product_name"
-            placeholder="Product name" style="width:180px" />
-        </nz-form-control>
-      </nz-form-item>
-
-      <nz-form-item>
-        <nz-form-label>Min Price</nz-form-label>
-        <nz-form-control>
-          <nz-input-number formControlName="price_min"
-            [nzMin]="0" [nzStep]="0.5" style="width:100px" />
-        </nz-form-control>
-      </nz-form-item>
-
-      <nz-form-item>
-        <nz-form-label>Max Price</nz-form-label>
-        <nz-form-control>
-          <nz-input-number formControlName="price_max"
-            [nzMin]="0" [nzStep]="0.5" style="width:100px" />
-        </nz-form-control>
-      </nz-form-item>
-
-      <nz-form-item>
-        <nz-form-label>Date From</nz-form-label>
-        <nz-form-control>
-          <input nz-input type="date" formControlName="date_from" style="width:150px" />
-        </nz-form-control>
-      </nz-form-item>
-
-      <nz-form-item>
-        <nz-form-label>Date To</nz-form-label>
-        <nz-form-control>
-          <input nz-input type="date" formControlName="date_to" style="width:150px" />
-        </nz-form-control>
-      </nz-form-item>
-
-      <nz-form-item>
-        <nz-form-control>
-          <button nz-button nzType="primary" type="submit">Search</button>
-          <button nz-button type="button"
-            (click)="onReset()" style="margin-left:8px">Reset</button>
-        </nz-form-control>
-      </nz-form-item>
-    </form>
-  `,
+  templateUrl: './search-bar.html',
 })
 export class SearchBarComponent {
   readonly searched = output<SearchParams>();
